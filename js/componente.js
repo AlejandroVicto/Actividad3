@@ -1,240 +1,126 @@
-/**
- * VISUAL COMPONENTS LIBRARY
- * A Vanilla JavaScript library for interactive visual components.
- */
 
-// ==========================================================================
-// 1. LIGHTBOX GALLERY
-// ==========================================================================
+class GaleriaExpandible {
 
-class LightboxGallery {
-    /**
-     * @param {Object} options Configuration options
-     * @param {string} options.selector The CSS selector for gallery images (default: '.vg-gallery-item')
-     */
-    constructor(options = {}) {
-        this.selector = options.selector || '.vg-gallery-item';
-        this.images = Array.from(document.querySelectorAll(this.selector));
-        this.currentIndex = 0;
-        this.isOpen = false;
+    constructor(opciones = {}) {
+        this.selector = opciones.selector || '.vg-gallery-item';
+        this.imagenes = Array.from(document.querySelectorAll(this.selector));
+        this.indiceActual = 0;
+        this.estaAbierto = false;
 
-        if (this.images.length === 0) {
-            console.warn(`LightboxGallery: No images found for selector "${this.selector}"`);
+        if (this.imagenes.length === 0) {
+            console.warn('No se encontraron imagenes con el selector "' + this.selector + '"');
             return;
         }
 
-        this.init();
+        this.iniciar();
     }
 
-    init() {
-        this.createDOM();
-        this.attachEvents();
+    iniciar() {
+        this.crearDOM();
+        this.agregarEventos();
     }
 
-    createDOM() {
-        // Create Overlay
+    crearDOM() {
+        // Crear capa oscura de fondo
         this.overlay = document.createElement('div');
         this.overlay.className = 'vg-lightbox-overlay';
 
-        // Close Button
-        this.closeBtn = document.createElement('button');
-        this.closeBtn.className = 'vg-lightbox-btn vg-lightbox-close';
-        this.closeBtn.innerHTML = '&times;';
-        this.closeBtn.setAttribute('aria-label', 'Cerrar');
+        // Boton de cerrar
+        this.btnCerrar = document.createElement('button');
+        this.btnCerrar.className = 'vg-lightbox-btn vg-lightbox-close';
+        this.btnCerrar.innerHTML = '&times;';
+        this.btnCerrar.setAttribute('aria-label', 'Cerrar');
 
-        // Prev Button
-        this.prevBtn = document.createElement('button');
-        this.prevBtn.className = 'vg-lightbox-btn vg-lightbox-prev';
-        this.prevBtn.innerHTML = '&#10094;';
-        this.prevBtn.setAttribute('aria-label', 'Anterior');
+        // Boton anterior
+        this.btnAnterior = document.createElement('button');
+        this.btnAnterior.className = 'vg-lightbox-btn vg-lightbox-prev';
+        this.btnAnterior.innerHTML = '&#10094;';
+        this.btnAnterior.setAttribute('aria-label', 'Anterior');
 
-        // Next Button
-        this.nextBtn = document.createElement('button');
-        this.nextBtn.className = 'vg-lightbox-btn vg-lightbox-next';
-        this.nextBtn.innerHTML = '&#10095;';
-        this.nextBtn.setAttribute('aria-label', 'Siguiente');
+        // Boton siguiente
+        this.btnSiguiente = document.createElement('button');
+        this.btnSiguiente.className = 'vg-lightbox-btn vg-lightbox-next';
+        this.btnSiguiente.innerHTML = '&#10095;';
+        this.btnSiguiente.setAttribute('aria-label', 'Siguiente');
 
-        // Content Container
-        this.content = document.createElement('div');
-        this.content.className = 'vg-lightbox-content';
+        // Contenedor del contenido
+        this.contenido = document.createElement('div');
+        this.contenido.className = 'vg-lightbox-content';
 
-        // Main Image
-        this.lightboxImg = document.createElement('img');
-        this.lightboxImg.className = 'vg-lightbox-image';
+        // Imagen principal
+        this.imagenGrande = document.createElement('img');
+        this.imagenGrande.className = 'vg-lightbox-image';
 
-        // Assemble
-        this.content.appendChild(this.lightboxImg);
-        this.overlay.appendChild(this.closeBtn);
-        this.overlay.appendChild(this.prevBtn);
-        this.overlay.appendChild(this.nextBtn);
-        this.overlay.appendChild(this.content);
+        // Ensamblar los elementos
+        this.contenido.appendChild(this.imagenGrande);
+        this.overlay.appendChild(this.btnCerrar);
+        this.overlay.appendChild(this.btnAnterior);
+        this.overlay.appendChild(this.btnSiguiente);
+        this.overlay.appendChild(this.contenido);
 
         document.body.appendChild(this.overlay);
     }
 
-    attachEvents() {
-        // Image Click Events
-        this.images.forEach((img, index) => {
-            img.addEventListener('click', () => this.open(index));
+    agregarEventos() {
+        // Evento de clic en cada imagen de la galeria
+        this.imagenes.forEach((img, indice) => {
+            img.addEventListener('click', () => this.abrir(indice));
         });
 
-        // Controls
-        this.closeBtn.addEventListener('click', () => this.close());
-        this.prevBtn.addEventListener('click', (e) => { e.stopPropagation(); this.navigate(-1); });
-        this.nextBtn.addEventListener('click', (e) => { e.stopPropagation(); this.navigate(1); });
+        // Controles de navegacion
+        this.btnCerrar.addEventListener('click', () => this.cerrar());
+        this.btnAnterior.addEventListener('click', (e) => { e.stopPropagation(); this.navegar(-1); });
+        this.btnSiguiente.addEventListener('click', (e) => { e.stopPropagation(); this.navegar(1); });
 
-        // Close on background click
+        // Cerrar al hacer clic en el fondo oscuro
         this.overlay.addEventListener('click', (e) => {
-            if (e.target === this.overlay || e.target === this.content) {
-                this.close();
+            if (e.target === this.overlay || e.target === this.contenido) {
+                this.cerrar();
             }
         });
 
-        // Keyboard Navigation
-        document.addEventListener('keydown', (e) => {
-            if (!this.isOpen) return;
-            if (e.key === 'Escape') this.close();
-            if (e.key === 'ArrowLeft') this.navigate(-1);
-            if (e.key === 'ArrowRight') this.navigate(1);
-        });
     }
 
-    open(index) {
-        this.currentIndex = index;
-        this.updateImage();
+    abrir(indice) {
+        this.indiceActual = indice;
+        this.actualizarImagen();
         this.overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scroll
-        this.isOpen = true;
+        document.body.style.overflow = 'hidden'; // Evitar scroll del fondo
+        this.estaAbierto = true;
     }
 
-    close() {
+    cerrar() {
         this.overlay.classList.remove('active');
         document.body.style.overflow = '';
-        this.isOpen = false;
-        
-        // Clear src after transition to avoid seeing old image on next open
+        this.estaAbierto = false;
+
+        // Limpiar la imagen despues de la transicion
         setTimeout(() => {
-            if(!this.isOpen) this.lightboxImg.src = '';
+            if (!this.estaAbierto) this.imagenGrande.src = '';
         }, 300);
     }
 
-    navigate(direction) {
-        this.currentIndex += direction;
-        
-        // Loop around
-        if (this.currentIndex >= this.images.length) {
-            this.currentIndex = 0;
-        } else if (this.currentIndex < 0) {
-            this.currentIndex = this.images.length - 1;
+    navegar(direccion) {
+        this.indiceActual += direccion;
+
+        // Ciclo infinito: si llega al final vuelve al inicio y viceversa
+        if (this.indiceActual >= this.imagenes.length) {
+            this.indiceActual = 0;
+        } else if (this.indiceActual < 0) {
+            this.indiceActual = this.imagenes.length - 1;
         }
 
-        this.updateImage();
+        this.actualizarImagen();
     }
 
-    updateImage() {
-        const sourceImg = this.images[this.currentIndex];
-        // Use data-highres if available, otherwise fallback to src
-        const highResSrc = sourceImg.getAttribute('data-highres') || sourceImg.src;
-        this.lightboxImg.src = highResSrc;
-        this.lightboxImg.alt = sourceImg.alt || `Imagen ${this.currentIndex + 1}`;
+    actualizarImagen() {
+        const imagenOrigen = this.imagenes[this.indiceActual];
+        // Usa data-highres si esta disponible, si no usa el src normal
+        const srcAltaRes = imagenOrigen.getAttribute('data-highres') || imagenOrigen.src;
+        this.imagenGrande.src = srcAltaRes;
+        this.imagenGrande.alt = imagenOrigen.alt || 'Imagen ' + (this.indiceActual + 1);
     }
 }
 
-// ==========================================================================
-// 2. SKELETON LOADER
-// ==========================================================================
-
-class SkeletonLoader {
-    /**
-     * @param {string|HTMLElement} container Selector or Element where skeleton will be injected
-     * @param {Object} options
-     * @param {string} options.type Type of preset: 'profile', 'card', 'list', 'custom'
-     * @param {number} options.count Number of items to generate (for list/card presets)
-     */
-    constructor(container, options = {}) {
-        this.container = typeof container === 'string' ? document.querySelector(container) : container;
-        this.type = options.type || 'card';
-        this.count = options.count || 1;
-        
-        if (!this.container) {
-            console.warn('SkeletonLoader: Invalid container provided.');
-            return;
-        }
-    }
-
-    /**
-     * Starts the loading animation by rendering skeletons
-     */
-    show() {
-        this.container.innerHTML = ''; // Clear current content
-        
-        const wrapper = document.createElement('div');
-        wrapper.className = 'vg-skeleton-container';
-
-        for (let i = 0; i < this.count; i++) {
-            wrapper.appendChild(this._generatePreset(this.type));
-        }
-
-        this.container.appendChild(wrapper);
-        this.container.setAttribute('data-loading', 'true');
-    }
-
-    /**
-     * Removes the skeleton loader
-     */
-    hide() {
-        const skeleton = this.container.querySelector('.vg-skeleton-container');
-        if (skeleton) {
-            skeleton.remove();
-        }
-        this.container.removeAttribute('data-loading');
-    }
-
-    _generatePreset(type) {
-        const fragment = document.createDocumentFragment();
-
-        if (type === 'profile') {
-            const profile = document.createElement('div');
-            profile.className = 'vg-skeleton-profile';
-            
-            profile.innerHTML = `
-                <div class="vg-skeleton circle"></div>
-                <div class="vg-skeleton-profile-content">
-                    <div class="vg-skeleton text"></div>
-                    <div class="vg-skeleton text-short"></div>
-                </div>
-            `;
-            fragment.appendChild(profile);
-        } else if (type === 'card') {
-            const card = document.createElement('div');
-            card.className = 'vg-skeleton-card';
-            
-            card.innerHTML = `
-                <div class="vg-skeleton image"></div>
-                <div class="vg-skeleton title" style="margin-top: 15px;"></div>
-                <div class="vg-skeleton text"></div>
-                <div class="vg-skeleton text-short"></div>
-            `;
-            fragment.appendChild(card);
-        } else if (type === 'text') {
-             const textBlock = document.createElement('div');
-             textBlock.style.display = 'flex';
-             textBlock.style.flexDirection = 'column';
-             textBlock.style.gap = '10px';
-
-             textBlock.innerHTML = `
-                <div class="vg-skeleton title"></div>
-                <div class="vg-skeleton text"></div>
-                <div class="vg-skeleton text"></div>
-                <div class="vg-skeleton text-short"></div>
-             `;
-             fragment.appendChild(textBlock);
-        }
-
-        return fragment;
-    }
-}
-
-// Export globally if needed (for browser usage without modules)
-window.LightboxGallery = LightboxGallery;
-window.SkeletonLoader = SkeletonLoader;
+// Hacer la clase disponible globalmente
+window.GaleriaExpandible = GaleriaExpandible;

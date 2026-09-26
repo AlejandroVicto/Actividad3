@@ -1,117 +1,88 @@
-# Visual Components Library 🎨
+# Componente Visual
 
-![Portada](img/img1.jpg)
+**Nombre:** Alejandro Jimenez Victoria
+**Numero de control:** 23160968
 
-**Visual Components Library** es una biblioteca de JavaScript puro (Vanilla JS) que provee componentes visuales interactivos y reutilizables, diseñados con una estética premium, moderna (glassmorphism) y soporte nativo para dark mode. No requiere dependencias externas como React, Vue o jQuery.
 
-## Componentes Incluidos y Problemas que Resuelven
-
-### 1. Lightbox Gallery (Visor Inmersivo de Imágenes)
-* **Problema que resuelve:** Los usuarios a menudo necesitan ver los detalles de una imagen que se muestra en miniatura, pero salir de la página actual rompe la experiencia de usuario.
-* **Solución:** Un visor en pantalla completa que oscurece el fondo (con un elegante efecto de desenfoque), centrando la imagen en grande.
-* **Comportamiento:** Permite navegar por agrupaciones de imágenes usando controles en pantalla, clics, o el teclado (flechas para navegar, `ESC` para cerrar).
-
-### 2. Skeleton Loader Dinámico
-* **Problema que resuelve:** La "ansiedad del usuario" cuando una pantalla se queda en blanco esperando datos de un servidor o API.
-* **Solución:** Muestra bloques animados que simulan la estructura del contenido final (imágenes, textos, avatares), manteniendo al usuario enganchado y reduciendo la tasa de rebote.
-* **Comportamiento:** Altamente configurable. Permite generar formas circulares, rectangulares o tarjetas completas dinámicamente mediante JS mientras el estado sea `loading`.
+**Galería Expandible** es un componente visual interactivo y reutilizable construido con Vanilla JS y CSS puro, diseñado con una estética moderna, clara y cálida. No requiere dependencias externas como React, Vue o jQuery.
 
 ---
 
-## 🚀 Instalación
+## Problema que resuelve
 
-No se requiere NPM. Simplemente incluye los archivos CSS y JS en tu proyecto HTML.
+En el desarrollo web, los usuarios a menudo necesitan ver los detalles de una imagen que se muestra en miniatura. Sin embargo, abrir el archivo original en una pestaña nueva o salir de la página actual interrumpe el flujo de navegación y rompe la experiencia de usuario. 
 
-1. Copia la carpeta `css` y `js` a tu proyecto.
-2. Enlaza los archivos en tu documento `index.html`:
+**Galería Expandible** resuelve esto aislando la imagen en un plano principal (modal inmersivo), oscureciendo el fondo, y permitiendo al usuario recorrer la galería completa de manera fluida y sin salir de la vista actual.
+
+## Instalación
+
+Para usar **Galería Expandible** en tu proyecto, debes enlazar los archivos CSS y JS en tu documento HTML:
 
 ```html
-<!-- Dentro de tu <head> -->
+<!-- En tu <head> -->
 <link rel="stylesheet" href="css/componente.css">
 
-<!-- Justo antes de cerrar el <body> -->
+<!-- Antes del cierre de tu </body> -->
 <script src="js/componente.js"></script>
 ```
 
+## Estructura del Proyecto
+
+```text
+/componente-visual
+├── README.md
+├── index.html
+├── css/
+│   ├── componente.css
+│   └── demo.css
+├── js/
+│   └── componente.js
+└── img/
+```
+
 ---
 
-## 💻 Uso y Ejemplos de Código
+## Uso y Documentación
 
-### Usando el Lightbox Gallery
+Para utilizar la galería, solo necesitas agregar tus imágenes dentro de un contenedor HTML y asignarles la clase `vg-gallery-item`. Opcionalmente puedes usar el atributo `data-highres` para indicar una versión de mayor calidad.
 
-Agrega la clase `vg-gallery-item` a cualquier etiqueta `<img>` que desees incluir en la galería. Opcionalmente, usa `data-highres` para cargar una versión de mayor calidad al abrir el visor.
+### HTML
 
-**HTML:**
 ```html
 <div class="mi-galeria">
-    <img src="thumb1.jpg" data-highres="full1.jpg" alt="Foto 1" class="vg-gallery-item">
-    <img src="thumb2.jpg" data-highres="full2.jpg" alt="Foto 2" class="vg-gallery-item">
+    <!-- Imagen simple -->
+    <img src="img/gato.jpg" class="vg-gallery-item" alt="Gato">
+    
+    <!-- Imagen con versión en alta resolución -->
+    <img src="img/gatito.jpg" class="vg-gallery-item" data-highres="img/gatito-hd.jpg" alt="Gatito">
 </div>
 ```
 
-**JavaScript:**
+### Inicialización en JavaScript
+ 
 ```javascript
-// Inicializa la galería cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-    const gallery = new LightboxGallery({
-        selector: '.vg-gallery-item' // Clase CSS de tus imágenes
+    // Inicializar la Galería Expandible apuntando a la clase de las imágenes
+    const galeria = new GaleriaExpandible({
+        selector: '.vg-gallery-item'
     });
 });
 ```
 
-### Usando el Skeleton Loader
+---
 
-Define un contenedor en tu HTML donde se inyectará la animación de carga.
+## Capturas de Pantalla
 
-**HTML:**
-```html
-<!-- Contenedor vacío donde se mostrará la carga y luego los datos -->
-<div id="contenedor-usuarios"></div>
-```
+### Galería interactiva
+![Vista de la galería en index](img/galeria.png)
+*Figura 1: Vista de la galería en modo miniatura (Grid layout).*
 
-**JavaScript:**
-```javascript
-// Instanciar el Loader indicando el selector del contenedor
-const loader = new SkeletonLoader('#contenedor-usuarios');
-
-// 1. Mostrar el Skeleton (Ejemplo: tipo 'profile' y 3 elementos)
-loader.type = 'profile'; 
-loader.count = 3;
-loader.show();
-
-// 2. Simular carga de datos (fetch a una API)
-setTimeout(() => {
-    // Ocultar el skeleton
-    loader.hide();
-    
-    // Renderizar tu contenido real aquí...
-    document.getElementById('contenedor-usuarios').innerHTML = '<p>¡Datos cargados!</p>';
-}, 3000);
-```
-*Tipos disponibles para Skeleton:* `'card'`, `'profile'`, `'text'`.
+### Visor Inmersivo
+![Vista de la Galería Expandible](img/imagen_enfocada.png)
+*Figura 2: Vista de una imagen ampliada dentro de la Galería Expandible.*
 
 ---
 
-## 📸 Capturas de Pantalla
+## Video Demostrativo
 
-**Skeleton Loader en Acción:**
-*(Se renderizan tarjetas de esqueleto con animación de brillo)*
-![Skeleton Loader Demo](img/img2.jpg)
-
-**Lightbox Gallery Abierto:**
-*(Efecto Glassmorphism de fondo)*
-![Lightbox Gallery Demo](img/img3.jpg)
-
----
-
-## 🎬 Video Demostrativo
-*(Graba un video de 1 minuto mostrando el componente, súbelo a YouTube/Loom y pon el enlace aquí)*
-▶️ [Ver Demo en Video (Ejemplo)]()
-
----
-
-## 🌐 Enlaces del Proyecto
-
-*(Reemplazar con tus links reales una vez subido)*
-* **Repositorio en GitHub:** [https://github.com/TU-USUARIO/componente-visual](https://github.com/TU-USUARIO/componente-visual)
-* **Demo en Vivo (GitHub Pages):** [https://TU-USUARIO.github.io/componente-visual](https://TU-USUARIO.github.io/componente-visual)
+[Ver Video Demostrativo](#) 

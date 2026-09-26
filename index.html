@@ -1,116 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Components Library - Demo</title>
-    
+    <title>Componente visual</title>
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Component CSS (Librería) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Component CSS -->
     <link rel="stylesheet" href="css/componente.css">
-    
+
     <!-- Demo CSS (Separado del HTML) -->
     <link rel="stylesheet" href="css/demo.css">
 </head>
+
 <body>
 
     <div class="container">
         <header>
-            <h1>Visual Components</h1>
-            <p class="subtitle">Librería reutilizable de JS</p>
+            <h1>Componente visual</h1>
         </header>
 
-        <!-- SKELETON LOADER DEMO -->
-        <section id="skeleton-demo">
-            <h2>1. Skeleton Loader Dinámico</h2>
-            <p style="color: #6b7280; margin-bottom: 20px;">
-                Evita la ansiedad del usuario mostrando la estructura del contenido mientras se cargan los datos. Adaptado al estilo "Pinable" (Cards Masonry).
-            </p>
-            
-            <div class="demo-box">
-                <button class="btn" id="btn-load-cards">Simular Carga (Tarjetas)</button>
-                <button class="btn btn-outline" id="btn-load-profile">Simular Carga (Perfil)</button>
-                
-                <!-- Contenedor donde actuará el Skeleton Loader -->
-                <div id="content-area" style="margin-top: 20px; min-height: 300px;">
-                    <!-- El contenido real que aparecerá después de cargar -->
-                    <div class="mock-content" id="real-content">
-                        <!-- Card 1 -->
-                        <div class="mock-card">
-                            <img src="img/img1.jpg" alt="Nature" style="height: 250px;">
-                            <div class="mock-card-body">
-                                <h3>Lago al Amanecer</h3>
-                                <p>Un hermoso paisaje natural capturado al despuntar el alba.</p>
-                                <div class="mock-card-footer">
-                                    <span>Por admin el Oct 11, 2026</span>
-                                    <span class="likes">❤️ 12</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="mock-card">
-                            <img src="img/img2.jpg" alt="Architecture" style="height: 350px;">
-                            <div class="mock-card-body">
-                                <h3>Ciudad Moderna</h3>
-                                <p>Arquitectura vanguardista iluminada con luces de neón en la noche.</p>
-                                <div class="mock-card-footer">
-                                    <span>Por admin el Oct 11, 2026</span>
-                                    <span class="likes">❤️ 34</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="mock-card">
-                            <img src="img/img3.jpg" alt="Abstract" style="height: 180px;">
-                            <div class="mock-card-body">
-                                <h3>Arte Geométrico 3D</h3>
-                                <p>Composición abstracta minimalista con colores pastel.</p>
-                                <div class="mock-card-footer">
-                                    <span>Por admin el Oct 11, 2026</span>
-                                    <span class="likes">❤️ 8</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 4 -->
-                        <div class="mock-card">
-                            <div class="mock-card-body">
-                                <h3 style="color: #ef4444; font-size: 1.5rem; text-align: center; margin: 20px 0;">"El diseño no es solo lo que se ve y se siente. El diseño es cómo funciona."</h3>
-                                <p style="text-align: center;">- Steve Jobs</p>
-                                <div class="mock-card-footer">
-                                    <span>Quote</span>
-                                    <span class="likes">❤️ 56</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- LIGHTBOX GALLERY DEMO -->
+
+        <!-- Galeria -->
         <section id="lightbox-demo">
-            <h2>2. Lightbox Gallery (Visor Inmersivo)</h2>
-            <p style="color: #6b7280; margin-bottom: 20px;">
-                Haz clic en cualquier imagen para abrir el visor en pantalla completa.
-            </p>
+            <h2>Galeria interactiva</h2>
 
-            <div class="demo-box">
-                <!-- El contenedor de la galería -->
-                <div class="vg-gallery-grid masonry-container">
-                    <div class="mock-card" style="margin-bottom: 20px;">
-                        <img src="img/img1.jpg" alt="Montañas y Lago" class="vg-gallery-item" data-highres="img/img1.jpg" style="height: 250px; cursor: zoom-in;">
-                    </div>
-                    <div class="mock-card" style="margin-bottom: 20px;">
-                        <img src="img/img2.jpg" alt="Edificio Neón" class="vg-gallery-item" data-highres="img/img2.jpg" style="height: 350px; cursor: zoom-in;">
-                    </div>
-                    <div class="mock-card" style="margin-bottom: 20px;">
-                        <img src="img/img3.jpg" alt="Figuras 3D" class="vg-gallery-item" data-highres="img/img3.jpg" style="height: 180px; cursor: zoom-in;">
-                    </div>
-                </div>
+            <div class="vg-gallery-grid">
+                <img src="img/gatito.jpg" class="vg-gallery-item" data-highres="img/gatito.jpg" alt="Gatito">
+                <img src="img/gato.jpg" class="vg-gallery-item" data-highres="img/gato.jpg" alt="Gato">
+                <img src="img/mapache.png" class="vg-gallery-item" data-highres="img/mapache.png" alt="Mapache">
+                <img src="img/otro gato.jpg" class="vg-gallery-item" data-highres="img/otro gato.jpg" alt="Otro gato">
+                <img src="img/otro otro gato.png" class="vg-gallery-item" data-highres="img/otro otro gato.png" alt="Otro otro gato">
+                <img src="img/rana.png" class="vg-gallery-item" data-highres="img/rana.png" alt="Rana">
+                <img src="img/ranita.png" class="vg-gallery-item" data-highres="img/ranita.png" alt="Ranita">
+                <img src="img/ranitita.png" class="vg-gallery-item" data-highres="img/ranitita.png" alt="Ranitita">
+                <img src="img/Mario_Mario_Party_Superstars.png" class="vg-gallery-item" data-highres="img/Mario_Mario_Party_Superstars.png" alt="Mario">
+                <img src="img/ankilo.png" class="vg-gallery-item" data-highres="img/ankilo.png" alt="Ankilosaurio">
+                <img src="img/dino 2.avif" class="vg-gallery-item" data-highres="img/dino 2.avif" alt="Dino 2">
+                <img src="img/dino.jpg" class="vg-gallery-item" data-highres="img/dino.jpg" alt="Dino">
+            </div>
+
+            <div class="component-info">
+                <h3>Galeria interactiva</h3>
+                <p><strong>Problema que resuelve:</strong> Resuelve la interrupción del flujo de navegación al intentar
+                    ver imágenes en detalle. En lugar de abrir el archivo original en otra pestaña, aísla la imagen en
+                    un
+                    plano principal y permite recorrer la galería completa de manera fluida.</p>
+                <p><strong>Comportamiento:</strong> Al hacer clic en una miniatura, oscurece el fondo y centra la imagen
+                    en grande. Permite navegar con flechas y cerrar con la tecla ESC.</p>
+                <p><strong>Reusabilidad:</strong> Agrupa automáticamente todas las imágenes que compartan la clase
+                    <strong>vg-gallery-item</strong> o el atributo <strong>data-gallery</strong>.
+                </p>
             </div>
         </section>
 
@@ -118,119 +62,15 @@
 
     <!-- Component JS -->
     <script src="js/componente.js"></script>
-    
+
     <!-- Demo Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // ----------------------------------------------------
-            // Inicializar Lightbox Gallery
-            // ----------------------------------------------------
-            const gallery = new LightboxGallery({
+            const gallery = new GaleriaExpandible({
                 selector: '.vg-gallery-item'
             });
-
-
-            // ----------------------------------------------------
-            // Lógica para el Demo de Skeleton Loader
-            // ----------------------------------------------------
-            const contentArea = document.getElementById('content-area');
-            const realContent = document.getElementById('real-content');
-            const btnLoadCards = document.getElementById('btn-load-cards');
-            const btnLoadProfile = document.getElementById('btn-load-profile');
-
-            // Instancia del Skeleton Loader
-            const loader = new SkeletonLoader('#content-area');
-
-            function simulateLoading(type, count) {
-                // Ocultar contenido real si está visible
-                realContent.classList.remove('loaded');
-                
-                // Configurar y mostrar el skeleton
-                loader.type = type;
-                loader.count = count;
-                loader.show();
-                
-                // Si es un loader tipo tarjeta, añadirle un contenedor Masonry 
-                // para que se vea exactamente como las tarjetas "Pinable" reales
-                const skeletonContainer = contentArea.querySelector('.vg-skeleton-container');
-                if (skeletonContainer && type === 'card') {
-                    skeletonContainer.style.display = 'block';
-                    skeletonContainer.style.columnCount = window.innerWidth > 900 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-                    skeletonContainer.style.columnGap = '20px';
-                    
-                    // Modificar los skeleton items para que se comporten como masonry
-                    const skeletons = skeletonContainer.querySelectorAll('.vg-skeleton-card');
-                    skeletons.forEach(s => {
-                        s.style.display = 'inline-block';
-                        s.style.width = '100%';
-                        s.style.breakInside = 'avoid';
-                        s.style.marginBottom = '20px';
-                        s.style.background = '#ffffff';
-                        s.style.padding = '0';
-                        s.style.borderRadius = '8px';
-                        s.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-                        
-                        // En el modo "Pinable" (ligero), el skeleton brilla sobre blanco/gris claro
-                        const image = s.querySelector('.vg-skeleton.image');
-                        image.style.borderBottomLeftRadius = '0';
-                        image.style.borderBottomRightRadius = '0';
-                        
-                        // Altura aleatoria para simular masonry si queremos, pero lo dejaremos fijo
-                        const titlesAndTexts = s.querySelectorAll('.vg-skeleton.title, .vg-skeleton.text, .vg-skeleton.text-short');
-                        titlesAndTexts.forEach(el => {
-                            el.style.marginLeft = '20px';
-                            el.style.width = 'calc(100% - 40px)';
-                        });
-                        
-                        // Arreglar el espacio inferior
-                        const textShort = s.querySelector('.vg-skeleton.text-short');
-                        if(textShort) textShort.style.marginBottom = '20px';
-                    });
-                }
-
-                // Simular petición API de 2.5 segundos
-                setTimeout(() => {
-                    loader.hide();
-                    if (type === 'card') {
-                        realContent.classList.add('loaded'); // Mostrar contenido real solo para tarjetas
-                    } else {
-                        // Para perfil, inyectamos un HTML básico de prueba
-                        contentArea.innerHTML = `
-                            <div style="display:flex; align-items:center; gap: 15px; color: #111827; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                                <div style="width: 60px; height: 60px; border-radius: 50%; background: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; color: white;">U</div>
-                                <div>
-                                    <h3 style="margin: 0 0 5px 0;">Usuario Demo</h3>
-                                    <p style="margin: 0; color: #6b7280;">Desarrollador Frontend</p>
-                                </div>
-                            </div>
-                        `;
-                        // Restaurar el realContent oculto al DOM para no perderlo
-                        contentArea.appendChild(realContent);
-                    }
-                }, 2500);
-            }
-
-            // Event Listeners botones demo
-            btnLoadCards.addEventListener('click', () => {
-                simulateLoading('card', 4);
-            });
-
-            btnLoadProfile.addEventListener('click', () => {
-                simulateLoading('profile', 1);
-            });
-
-            // Manejar resize para el skeleton masonry
-            window.addEventListener('resize', () => {
-                 const skeletonContainer = contentArea.querySelector('.vg-skeleton-container');
-                 if(skeletonContainer && skeletonContainer.style.display === 'block') {
-                     skeletonContainer.style.columnCount = window.innerWidth > 900 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-                 }
-            });
-
-            // Iniciar con la animación cargando la primera vez
-            simulateLoading('card', 4);
         });
     </script>
 </body>
+
 </html>
