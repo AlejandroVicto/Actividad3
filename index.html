@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Components Library - Demo</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="css/componente.css">
+    
+    <style>
+        /* Base Demo Styles */
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --primary-color: #3b82f6;
+            --secondary-color: #1e293b;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            background: linear-gradient(180deg, rgba(59,130,246,0.1) 0%, rgba(15,23,42,0) 100%);
+            border-radius: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: -webkit-linear-gradient(45deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 1.2rem;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .demo-box {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Demo Specific Buttons */
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Mock Content for Skeleton Demo */
+        .mock-content {
+            display: none; /* Hidden initially */
+        }
+        
+        .mock-content.loaded {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .mock-card {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .mock-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .mock-card-body {
+            padding: 20px;
+        }
+
+        .mock-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .mock-card p {
+            color: #94a3b8;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Visual Components</h1>
+            <p class="subtitle">Librería reutilizable y moderna en Vanilla JS</p>
+        </header>
+
+        <!-- SKELETON LOADER DEMO -->
+        <section id="skeleton-demo">
+            <h2>1. Skeleton Loader Dinámico</h2>
+            <p style="color: #94a3b8; margin-bottom: 20px;">
+                Evita la ansiedad del usuario mostrando la estructura del contenido mientras se cargan los datos.
+            </p>
+            
+            <div class="demo-box">
+                <button class="btn" id="btn-load-cards">Simular Carga (Tarjetas)</button>
+                <button class="btn btn-outline" id="btn-load-profile">Simular Carga (Perfil)</button>
+                
+                <!-- Contenedor donde actuará el Skeleton Loader -->
+                <div id="content-area" style="margin-top: 20px; min-height: 300px;">
+                    <!-- El contenido real que aparecerá después de cargar -->
+                    <div class="mock-content" id="real-content">
+                        <div class="mock-card">
+                            <img src="img/img1.jpg" alt="Nature">
+                            <div class="mock-card-body">
+                                <h3>Lago al Amanecer</h3>
+                                <p>Un hermoso paisaje natural capturado al despuntar el alba.</p>
+                            </div>
+                        </div>
+                        <div class="mock-card">
+                            <img src="img/img2.jpg" alt="Architecture">
+                            <div class="mock-card-body">
+                                <h3>Ciudad Moderna</h3>
+                                <p>Arquitectura vanguardista iluminada con luces de neón en la noche.</p>
+                            </div>
+                        </div>
+                        <div class="mock-card">
+                            <img src="img/img3.jpg" alt="Abstract">
+                            <div class="mock-card-body">
+                                <h3>Arte Geométrico 3D</h3>
+                                <p>Composición abstracta minimalista con colores pastel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIGHTBOX GALLERY DEMO -->
+        <section id="lightbox-demo">
+            <h2>2. Lightbox Gallery (Visor Inmersivo)</h2>
+            <p style="color: #94a3b8; margin-bottom: 20px;">
+                Haz clic en cualquier imagen para abrir el visor en pantalla completa. Navega con flechas o teclado.
+            </p>
+
+            <div class="demo-box">
+                <!-- El contenedor de la galería -->
+                <div class="vg-gallery-grid">
+                    <img src="img/img1.jpg" alt="Montañas y Lago" class="vg-gallery-item" data-highres="img/img1.jpg">
+                    <img src="img/img2.jpg" alt="Edificio Neón" class="vg-gallery-item" data-highres="img/img2.jpg">
+                    <img src="img/img3.jpg" alt="Figuras 3D" class="vg-gallery-item" data-highres="img/img3.jpg">
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Component JS -->
+    <script src="js/componente.js"></script>
+    
+    <!-- Demo Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // ----------------------------------------------------
+            // Inicializar Lightbox Gallery
+            // ----------------------------------------------------
+            const gallery = new LightboxGallery({
+                selector: '.vg-gallery-item'
+            });
+
+
+            // ----------------------------------------------------
+            // Lógica para el Demo de Skeleton Loader
+            // ----------------------------------------------------
+            const contentArea = document.getElementById('content-area');
+            const realContent = document.getElementById('real-content');
+            const btnLoadCards = document.getElementById('btn-load-cards');
+            const btnLoadProfile = document.getElementById('btn-load-profile');
+
+            // Instancia del Skeleton Loader
+            const loader = new SkeletonLoader('#content-area');
+
+            function simulateLoading(type, count) {
+                // Ocultar contenido real si está visible
+                realContent.classList.remove('loaded');
+                
+                // Configurar y mostrar el skeleton
+                loader.type = type;
+                loader.count = count;
+                loader.show();
+
+                // Simular petición API de 2.5 segundos
+                setTimeout(() => {
+                    loader.hide();
+                    if (type === 'card') {
+                        realContent.classList.add('loaded'); // Mostrar contenido real solo para tarjetas
+                    } else {
+                        // Para perfil, inyectamos un HTML básico de prueba
+                        contentArea.innerHTML = `
+                            <div style="display:flex; align-items:center; gap: 15px; color: white;">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">U</div>
+                                <div>
+                                    <h3 style="margin: 0 0 5px 0;">Usuario Demo</h3>
+                                    <p style="margin: 0; color: #94a3b8;">Desarrollador Frontend</p>
+                                </div>
+                            </div>
+                        `;
+                        // Restaurar el realContent oculto al DOM para no perderlo
+                        contentArea.appendChild(realContent);
+                    }
+                }, 2500);
+            }
+
+            // Event Listeners botones demo
+            btnLoadCards.addEventListener('click', () => {
+                simulateLoading('card', 3);
+            });
+
+            btnLoadProfile.addEventListener('click', () => {
+                simulateLoading('profile', 1);
+            });
+
+            // Iniciar con la animación cargando la primera vez
+            simulateLoading('card', 3);
+        });
+    </script>
+</body>
+</html>

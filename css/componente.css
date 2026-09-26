@@ -1,0 +1,245 @@
+/* ==========================================================================
+   VISUAL COMPONENTS LIBRARY
+   Includes: Lightbox Gallery & Skeleton Loader
+   ========================================================================== */
+
+/* --- CSS Variables for Theme & Styling --- */
+:root {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  
+  /* Lightbox Variables */
+  --lightbox-bg: rgba(15, 23, 42, 0.9);
+  --lightbox-backdrop: blur(12px);
+  --lightbox-nav-color: rgba(255, 255, 255, 0.6);
+  --lightbox-nav-hover: rgba(255, 255, 255, 1);
+  --lightbox-border-radius: 12px;
+  
+  /* Skeleton Variables */
+  --skeleton-bg: #1e293b;
+  --skeleton-shine: rgba(255, 255, 255, 0.05);
+  --skeleton-radius: 8px;
+}
+
+/* ==========================================================================
+   1. LIGHTBOX GALLERY COMPONENT
+   ========================================================================== */
+
+/* Gallery Grid (Optional default style for demo) */
+.vg-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.vg-gallery-item {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: var(--skeleton-radius);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.vg-gallery-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Lightbox Overlay */
+.vg-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--lightbox-bg);
+  backdrop-filter: var(--lightbox-backdrop);
+  -webkit-backdrop-filter: var(--lightbox-backdrop);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.vg-lightbox-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Lightbox Image Container */
+.vg-lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.vg-lightbox-overlay.active .vg-lightbox-content {
+  transform: scale(1);
+}
+
+.vg-lightbox-image {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: var(--lightbox-border-radius);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+  user-select: none;
+}
+
+/* Controls (Close, Prev, Next) */
+.vg-lightbox-btn {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: var(--lightbox-nav-color);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.vg-lightbox-btn:hover {
+  color: var(--lightbox-nav-hover);
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.1);
+}
+
+.vg-lightbox-close {
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+}
+
+.vg-lightbox-prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vg-lightbox-next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vg-lightbox-prev:hover, .vg-lightbox-next:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+
+/* ==========================================================================
+   2. SKELETON LOADER COMPONENT
+   ========================================================================== */
+
+.vg-skeleton-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 20px;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Base Skeleton Item */
+.vg-skeleton {
+  background-color: var(--skeleton-bg);
+  border-radius: var(--skeleton-radius);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animation */
+.vg-skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    var(--skeleton-shine) 20%,
+    var(--skeleton-shine) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: vg-shimmer 2s infinite;
+}
+
+@keyframes vg-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Shapes */
+.vg-skeleton.circle {
+  border-radius: 50%;
+}
+
+.vg-skeleton.text {
+  height: 20px;
+  width: 100%;
+}
+
+.vg-skeleton.text-short {
+  height: 20px;
+  width: 60%;
+}
+
+.vg-skeleton.title {
+  height: 32px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.vg-skeleton.image {
+  height: 200px;
+  width: 100%;
+}
+
+/* Pre-defined Layouts */
+.vg-skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vg-skeleton-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.vg-skeleton-profile .vg-skeleton.circle {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.vg-skeleton-profile-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
