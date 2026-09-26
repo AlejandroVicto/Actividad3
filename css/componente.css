@@ -18,8 +18,8 @@
   --lightbox-border-radius: 12px;
   
   /* Skeleton Variables */
-  --skeleton-bg: #1e293b;
-  --skeleton-shine: rgba(255, 255, 255, 0.05);
+  --skeleton-bg: #e5e7eb;
+  --skeleton-shine: rgba(255, 255, 255, 0.6);
   --skeleton-radius: 8px;
 }
 
@@ -154,9 +154,9 @@
   gap: 15px;
   width: 100%;
   padding: 20px;
-  background: rgba(30, 41, 59, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* Base Skeleton Item */

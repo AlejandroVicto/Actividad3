@@ -10,165 +10,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Component CSS -->
+    <!-- Component CSS (Librería) -->
     <link rel="stylesheet" href="css/componente.css">
     
-    <style>
-        /* Base Demo Styles */
-        :root {
-            --bg-color: #0f172a;
-            --text-color: #f8fafc;
-            --primary-color: #3b82f6;
-            --secondary-color: #1e293b;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            padding: 40px 0;
-            background: linear-gradient(180deg, rgba(59,130,246,0.1) 0%, rgba(15,23,42,0) 100%);
-            border-radius: 20px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            background: -webkit-linear-gradient(45deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            color: #94a3b8;
-            font-size: 1.2rem;
-        }
-
-        section {
-            margin-bottom: 80px;
-        }
-
-        h2 {
-            font-size: 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-
-        .demo-box {
-            background-color: var(--secondary-color);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
-        }
-
-        /* Demo Specific Buttons */
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-right: 10px;
-            margin-bottom: 20px;
-        }
-
-        .btn:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-        }
-
-        /* Mock Content for Skeleton Demo */
-        .mock-content {
-            display: none; /* Hidden initially */
-        }
-        
-        .mock-content.loaded {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .mock-card {
-            background: #1e293b;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .mock-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .mock-card-body {
-            padding: 20px;
-        }
-
-        .mock-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-        }
-
-        .mock-card p {
-            color: #94a3b8;
-            margin: 0;
-            font-size: 0.95rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-    </style>
+    <!-- Demo CSS (Separado del HTML) -->
+    <link rel="stylesheet" href="css/demo.css">
 </head>
 <body>
 
     <div class="container">
         <header>
             <h1>Visual Components</h1>
-            <p class="subtitle">Librería reutilizable y moderna en Vanilla JS</p>
+            <p class="subtitle">Librería reutilizable de JS</p>
         </header>
 
         <!-- SKELETON LOADER DEMO -->
         <section id="skeleton-demo">
             <h2>1. Skeleton Loader Dinámico</h2>
-            <p style="color: #94a3b8; margin-bottom: 20px;">
-                Evita la ansiedad del usuario mostrando la estructura del contenido mientras se cargan los datos.
+            <p style="color: #6b7280; margin-bottom: 20px;">
+                Evita la ansiedad del usuario mostrando la estructura del contenido mientras se cargan los datos. Adaptado al estilo "Pinable" (Cards Masonry).
             </p>
             
             <div class="demo-box">
@@ -179,25 +39,51 @@
                 <div id="content-area" style="margin-top: 20px; min-height: 300px;">
                     <!-- El contenido real que aparecerá después de cargar -->
                     <div class="mock-content" id="real-content">
+                        <!-- Card 1 -->
                         <div class="mock-card">
-                            <img src="img/img1.jpg" alt="Nature">
+                            <img src="img/img1.jpg" alt="Nature" style="height: 250px;">
                             <div class="mock-card-body">
                                 <h3>Lago al Amanecer</h3>
                                 <p>Un hermoso paisaje natural capturado al despuntar el alba.</p>
+                                <div class="mock-card-footer">
+                                    <span>Por admin el Oct 11, 2026</span>
+                                    <span class="likes">❤️ 12</span>
+                                </div>
                             </div>
                         </div>
+                        <!-- Card 2 -->
                         <div class="mock-card">
-                            <img src="img/img2.jpg" alt="Architecture">
+                            <img src="img/img2.jpg" alt="Architecture" style="height: 350px;">
                             <div class="mock-card-body">
                                 <h3>Ciudad Moderna</h3>
                                 <p>Arquitectura vanguardista iluminada con luces de neón en la noche.</p>
+                                <div class="mock-card-footer">
+                                    <span>Por admin el Oct 11, 2026</span>
+                                    <span class="likes">❤️ 34</span>
+                                </div>
                             </div>
                         </div>
+                        <!-- Card 3 -->
                         <div class="mock-card">
-                            <img src="img/img3.jpg" alt="Abstract">
+                            <img src="img/img3.jpg" alt="Abstract" style="height: 180px;">
                             <div class="mock-card-body">
                                 <h3>Arte Geométrico 3D</h3>
                                 <p>Composición abstracta minimalista con colores pastel.</p>
+                                <div class="mock-card-footer">
+                                    <span>Por admin el Oct 11, 2026</span>
+                                    <span class="likes">❤️ 8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="mock-card">
+                            <div class="mock-card-body">
+                                <h3 style="color: #ef4444; font-size: 1.5rem; text-align: center; margin: 20px 0;">"El diseño no es solo lo que se ve y se siente. El diseño es cómo funciona."</h3>
+                                <p style="text-align: center;">- Steve Jobs</p>
+                                <div class="mock-card-footer">
+                                    <span>Quote</span>
+                                    <span class="likes">❤️ 56</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -208,16 +94,22 @@
         <!-- LIGHTBOX GALLERY DEMO -->
         <section id="lightbox-demo">
             <h2>2. Lightbox Gallery (Visor Inmersivo)</h2>
-            <p style="color: #94a3b8; margin-bottom: 20px;">
-                Haz clic en cualquier imagen para abrir el visor en pantalla completa. Navega con flechas o teclado.
+            <p style="color: #6b7280; margin-bottom: 20px;">
+                Haz clic en cualquier imagen para abrir el visor en pantalla completa.
             </p>
 
             <div class="demo-box">
                 <!-- El contenedor de la galería -->
-                <div class="vg-gallery-grid">
-                    <img src="img/img1.jpg" alt="Montañas y Lago" class="vg-gallery-item" data-highres="img/img1.jpg">
-                    <img src="img/img2.jpg" alt="Edificio Neón" class="vg-gallery-item" data-highres="img/img2.jpg">
-                    <img src="img/img3.jpg" alt="Figuras 3D" class="vg-gallery-item" data-highres="img/img3.jpg">
+                <div class="vg-gallery-grid masonry-container">
+                    <div class="mock-card" style="margin-bottom: 20px;">
+                        <img src="img/img1.jpg" alt="Montañas y Lago" class="vg-gallery-item" data-highres="img/img1.jpg" style="height: 250px; cursor: zoom-in;">
+                    </div>
+                    <div class="mock-card" style="margin-bottom: 20px;">
+                        <img src="img/img2.jpg" alt="Edificio Neón" class="vg-gallery-item" data-highres="img/img2.jpg" style="height: 350px; cursor: zoom-in;">
+                    </div>
+                    <div class="mock-card" style="margin-bottom: 20px;">
+                        <img src="img/img3.jpg" alt="Figuras 3D" class="vg-gallery-item" data-highres="img/img3.jpg" style="height: 180px; cursor: zoom-in;">
+                    </div>
                 </div>
             </div>
         </section>
@@ -258,6 +150,44 @@
                 loader.type = type;
                 loader.count = count;
                 loader.show();
+                
+                // Si es un loader tipo tarjeta, añadirle un contenedor Masonry 
+                // para que se vea exactamente como las tarjetas "Pinable" reales
+                const skeletonContainer = contentArea.querySelector('.vg-skeleton-container');
+                if (skeletonContainer && type === 'card') {
+                    skeletonContainer.style.display = 'block';
+                    skeletonContainer.style.columnCount = window.innerWidth > 900 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+                    skeletonContainer.style.columnGap = '20px';
+                    
+                    // Modificar los skeleton items para que se comporten como masonry
+                    const skeletons = skeletonContainer.querySelectorAll('.vg-skeleton-card');
+                    skeletons.forEach(s => {
+                        s.style.display = 'inline-block';
+                        s.style.width = '100%';
+                        s.style.breakInside = 'avoid';
+                        s.style.marginBottom = '20px';
+                        s.style.background = '#ffffff';
+                        s.style.padding = '0';
+                        s.style.borderRadius = '8px';
+                        s.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                        
+                        // En el modo "Pinable" (ligero), el skeleton brilla sobre blanco/gris claro
+                        const image = s.querySelector('.vg-skeleton.image');
+                        image.style.borderBottomLeftRadius = '0';
+                        image.style.borderBottomRightRadius = '0';
+                        
+                        // Altura aleatoria para simular masonry si queremos, pero lo dejaremos fijo
+                        const titlesAndTexts = s.querySelectorAll('.vg-skeleton.title, .vg-skeleton.text, .vg-skeleton.text-short');
+                        titlesAndTexts.forEach(el => {
+                            el.style.marginLeft = '20px';
+                            el.style.width = 'calc(100% - 40px)';
+                        });
+                        
+                        // Arreglar el espacio inferior
+                        const textShort = s.querySelector('.vg-skeleton.text-short');
+                        if(textShort) textShort.style.marginBottom = '20px';
+                    });
+                }
 
                 // Simular petición API de 2.5 segundos
                 setTimeout(() => {
@@ -267,11 +197,11 @@
                     } else {
                         // Para perfil, inyectamos un HTML básico de prueba
                         contentArea.innerHTML = `
-                            <div style="display:flex; align-items:center; gap: 15px; color: white;">
-                                <div style="width: 60px; height: 60px; border-radius: 50%; background: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold;">U</div>
+                            <div style="display:flex; align-items:center; gap: 15px; color: #111827; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                                <div style="width: 60px; height: 60px; border-radius: 50%; background: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; color: white;">U</div>
                                 <div>
                                     <h3 style="margin: 0 0 5px 0;">Usuario Demo</h3>
-                                    <p style="margin: 0; color: #94a3b8;">Desarrollador Frontend</p>
+                                    <p style="margin: 0; color: #6b7280;">Desarrollador Frontend</p>
                                 </div>
                             </div>
                         `;
@@ -283,15 +213,23 @@
 
             // Event Listeners botones demo
             btnLoadCards.addEventListener('click', () => {
-                simulateLoading('card', 3);
+                simulateLoading('card', 4);
             });
 
             btnLoadProfile.addEventListener('click', () => {
                 simulateLoading('profile', 1);
             });
 
+            // Manejar resize para el skeleton masonry
+            window.addEventListener('resize', () => {
+                 const skeletonContainer = contentArea.querySelector('.vg-skeleton-container');
+                 if(skeletonContainer && skeletonContainer.style.display === 'block') {
+                     skeletonContainer.style.columnCount = window.innerWidth > 900 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+                 }
+            });
+
             // Iniciar con la animación cargando la primera vez
-            simulateLoading('card', 3);
+            simulateLoading('card', 4);
         });
     </script>
 </body>
