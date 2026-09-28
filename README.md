@@ -114,13 +114,13 @@ document.addEventListener('DOMContentLoaded', () => {
 *Figura 2: Vista de una imagen ampliada dentro de la Galería Expandible.*
 
 ### 2. Barra de Satisfacción
-![Vista de la barra en index](img/barra_satisfaccion.png)
-*Figura 3: Vista de la barra en modo reposo.*
+![Vista de la barra de satisfacción en reposo](img/satisfaccion.png)
+*Figura 3: Vista de la Barra de Satisfacción en modo reposo.*
 
-![Vista de la barra en index](img/barra_satisfaccion.png)
-*Figura 3: Vista de la barra en modo reposo.*
+![Vista de la barra de satisfacción activa](img/satisfaccion_activo.png)
+*Figura 4: Vista de la Barra de Satisfacción con un nivel seleccionado.*
 ---
 
 ## Video Demostrativo
 
-[Ver Video Demostrativo](#) 
+https://youtu.be/hMxCeUY6bNE 
