@@ -34,11 +34,13 @@
                 <img src="img/gato.jpg" class="vg-gallery-item" data-highres="img/gato.jpg" alt="Gato">
                 <img src="img/mapache.png" class="vg-gallery-item" data-highres="img/mapache.png" alt="Mapache">
                 <img src="img/otro gato.jpg" class="vg-gallery-item" data-highres="img/otro gato.jpg" alt="Otro gato">
-                <img src="img/otro otro gato.png" class="vg-gallery-item" data-highres="img/otro otro gato.png" alt="Otro otro gato">
+                <img src="img/otro otro gato.png" class="vg-gallery-item" data-highres="img/otro otro gato.png"
+                    alt="Otro otro gato">
                 <img src="img/rana.png" class="vg-gallery-item" data-highres="img/rana.png" alt="Rana">
                 <img src="img/ranita.png" class="vg-gallery-item" data-highres="img/ranita.png" alt="Ranita">
                 <img src="img/ranitita.png" class="vg-gallery-item" data-highres="img/ranitita.png" alt="Ranitita">
-                <img src="img/Mario_Mario_Party_Superstars.png" class="vg-gallery-item" data-highres="img/Mario_Mario_Party_Superstars.png" alt="Mario">
+                <img src="img/Mario_Mario_Party_Superstars.png" class="vg-gallery-item"
+                    data-highres="img/Mario_Mario_Party_Superstars.png" alt="Mario">
                 <img src="img/ankilo.png" class="vg-gallery-item" data-highres="img/ankilo.png" alt="Ankilosaurio">
                 <img src="img/dino 2.avif" class="vg-gallery-item" data-highres="img/dino 2.avif" alt="Dino 2">
                 <img src="img/dino.jpg" class="vg-gallery-item" data-highres="img/dino.jpg" alt="Dino">
@@ -58,9 +60,50 @@
             </div>
         </section>
 
+        <!-- Barra de Satisfacción -->
+        <section id="satisfaction-demo" style="margin-top: 40px;">
+            <h2>Valoración de Satisfacción</h2>
+
+            <div class="vg-satisfaction-bar" id="mi-barra">
+                <div class="vg-sb-emojis">
+                    <div class="vg-sb-emoji" data-value="1">😡</div>
+                    <div class="vg-sb-emoji" data-value="2">🙁</div>
+                    <div class="vg-sb-emoji" data-value="3">😐</div>
+                    <div class="vg-sb-emoji" data-value="4">🙂</div>
+                    <div class="vg-sb-emoji" data-value="5">🤩</div>
+                </div>
+
+                <div class="vg-sb-track-container">
+                    <div class="vg-sb-track"></div>
+                    <div class="vg-sb-progress"></div>
+                    <div class="vg-sb-nodes">
+                        <button class="vg-sb-node" data-value="1" aria-label="Muy malo"></button>
+                        <button class="vg-sb-node" data-value="2" aria-label="Malo"></button>
+                        <button class="vg-sb-node" data-value="3" aria-label="Regular"></button>
+                        <button class="vg-sb-node" data-value="4" aria-label="Bueno"></button>
+                        <button class="vg-sb-node" data-value="5" aria-label="Excelente"></button>
+                    </div>
+                </div>
+
+                <div class="vg-sb-labels">
+                    <span>Muy malo</span>
+                    <span>Excelente</span>
+                </div>
+            </div>
+
+            <div class="component-info">
+                <h3>Barra de Satisfacción</h3>
+                <p><strong>Problema que resuelve:</strong> Agiliza para el usuario el proceso de calificar un producto o
+                    servicio unicamente pulsando en la barra sin tener que escribir numeros o palabras.</p>
+                <p><strong>Comportamiento:</strong> Al hacer clic en un circulo, la barra se llena hasta ese punto y el
+                    circulo correspondiente se anima y destaca. Devuelve el valor seleccionado.</p>
+                <p><strong>Reusabilidad:</strong> Puede instanciarse múltiples veces en la misma página con solo llamar
+                    a la clase <strong>BarraSatisfaccion</strong>.</p>
+            </div>
+        </section>
     </div>
 
-    <!-- Component JS -->
+    <!-- Componente JS -->
     <script src="js/componente.js"></script>
 
     <!-- Demo Scripts -->
@@ -68,6 +111,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             const gallery = new GaleriaExpandible({
                 selector: '.vg-gallery-item'
+            });
+
+            const barra = new BarraSatisfaccion({
+                selector: '#mi-barra'
             });
         });
     </script>

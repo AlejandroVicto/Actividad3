@@ -122,5 +122,39 @@ class GaleriaExpandible {
     }
 }
 
-// Hacer la clase disponible globalmente
+// BARRA DE SATISFACCION
+
+class BarraSatisfaccion {
+    constructor(opciones = {}) {
+        this.container = document.querySelector(opciones.selector || '.vg-satisfaction-bar');
+        if (!this.container) return;
+
+        this.emojis = this.container.querySelectorAll('.vg-sb-emoji');
+        this.nodos = this.container.querySelectorAll('.vg-sb-node');
+        this.progreso = this.container.querySelector('.vg-sb-progress');
+
+        this.nodos.forEach(nodo => {
+            nodo.addEventListener('click', () => {
+                this.actualizar(nodo.getAttribute('data-value'));
+            });
+        });
+    }
+
+    actualizar(valor) {
+        const valNum = parseInt(valor);
+        this.container.setAttribute('data-current-val', valNum);
+
+        this.progreso.style.width = ((valNum - 1) / (this.nodos.length - 1)) * 100 + '%';
+
+        this.emojis.forEach(e => e.classList.toggle('active', e.getAttribute('data-value') == valNum));
+
+        this.nodos.forEach(n => {
+            const nodoVal = parseInt(n.getAttribute('data-value'));
+            n.classList.toggle('active', nodoVal === valNum);
+            n.classList.toggle('filled', nodoVal <= valNum);
+        });
+    }
+}
+
 window.GaleriaExpandible = GaleriaExpandible;
+window.BarraSatisfaccion = BarraSatisfaccion;

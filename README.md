@@ -4,19 +4,24 @@
 **Numero de control:** 23160968
 
 
-**Galería Expandible** es un componente visual interactivo y reutilizable construido con Vanilla JS y CSS puro, diseñado con una estética moderna, clara y cálida. No requiere dependencias externas como React, Vue o jQuery.
+Este proyecto incluye dos componentes visuales interactivos y reutilizables construidos con Vanilla JS y CSS puro, diseñados con una estética moderna, clara y cálida. No requieren dependencias externas.
+
+1. **Galería Expandible**
+2. **Barra de Satisfacción**
 
 ---
 
-## Problema que resuelve
+## Problemas que resuelven
 
-En el desarrollo web, los usuarios a menudo necesitan ver los detalles de una imagen que se muestra en miniatura. Sin embargo, abrir el archivo original en una pestaña nueva o salir de la página actual interrumpe el flujo de navegación y rompe la experiencia de usuario. 
+### 1. Galería Expandible
+En el desarrollo web, abrir una imagen en su tamaño original en una pestaña nueva o salir de la página interrumpe el flujo de navegación. La **Galería Expandible** resuelve esto aislando la imagen en un modal inmersivo interactivo, sin salir de la vista actual.
 
-**Galería Expandible** resuelve esto aislando la imagen en un plano principal (modal inmersivo), oscureciendo el fondo, y permitiendo al usuario recorrer la galería completa de manera fluida y sin salir de la vista actual.
+### 2. Barra de Satisfacción
+Recoger feedback del usuario con formularios aburridos reduce la tasa de respuesta. La **Barra de Satisfacción** resuelve esto ofreciendo un componente visual rápido, amigable e interactivo, donde con un solo clic en una escala gráfica el usuario comunica su nivel de satisfacción visualmente.
 
 ## Instalación
 
-Para usar **Galería Expandible** en tu proyecto, debes enlazar los archivos CSS y JS en tu documento HTML:
+Para hacer uso de estos componentes en tu proyecto debes enlazar los archivos CSS y JS en tu documento HTML:
 
 ```html
 <!-- En tu <head> -->
@@ -44,28 +49,56 @@ Para usar **Galería Expandible** en tu proyecto, debes enlazar los archivos CSS
 
 ## Uso y Documentación
 
-Para utilizar la galería, solo necesitas agregar tus imágenes dentro de un contenedor HTML y asignarles la clase `vg-gallery-item`. Opcionalmente puedes usar el atributo `data-highres` para indicar una versión de mayor calidad.
+### 1. Galería Expandible
+Para utilizar la galería, agrega tus imágenes y asígnales la clase `vg-gallery-item`. Opcionalmente usa `data-highres` para resolución completa.
 
-### HTML
-
+**HTML:**
 ```html
 <div class="mi-galeria">
-    <!-- Imagen simple -->
     <img src="img/gato.jpg" class="vg-gallery-item" alt="Gato">
-    
-    <!-- Imagen con versión en alta resolución -->
     <img src="img/gatito.jpg" class="vg-gallery-item" data-highres="img/gatito-hd.jpg" alt="Gatito">
 </div>
 ```
 
-### Inicialización en JavaScript
- 
+**JavaScript:**
 ```javascript
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar la Galería Expandible apuntando a la clase de las imágenes
-    const galeria = new GaleriaExpandible({
-        selector: '.vg-gallery-item'
-    });
+    const galeria = new GaleriaExpandible({ selector: '.vg-gallery-item' });
+});
+```
+
+### 2. Barra de Satisfacción
+Inserta la estructura HTML base y crea una instancia de la clase pasando su ID o selector.
+
+**HTML:**
+```html
+<div class="vg-satisfaction-bar" id="mi-barra">
+    <div class="vg-sb-emojis">
+        <div class="vg-sb-emoji" data-value="1">😡</div>
+        <div class="vg-sb-emoji" data-value="2">🙁</div>
+        <div class="vg-sb-emoji" data-value="3">😐</div>
+        <div class="vg-sb-emoji" data-value="4">🙂</div>
+        <div class="vg-sb-emoji" data-value="5">🤩</div>
+    </div>
+    
+    <div class="vg-sb-track-container">
+        <div class="vg-sb-track"></div>
+        <div class="vg-sb-progress"></div>
+        <div class="vg-sb-nodes">
+            <button class="vg-sb-node" data-value="1"></button>
+            <button class="vg-sb-node" data-value="2"></button>
+            <button class="vg-sb-node" data-value="3"></button>
+            <button class="vg-sb-node" data-value="4"></button>
+            <button class="vg-sb-node" data-value="5"></button>
+        </div>
+    </div>
+</div>
+```
+
+**JavaScript:**
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+    const barra = new BarraSatisfaccion({ selector: '#mi-barra' });
 });
 ```
 
@@ -73,14 +106,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## Capturas de Pantalla
 
-### Galería interactiva
+### 1. Galería Expandible
 ![Vista de la galería en index](img/galeria.png)
 *Figura 1: Vista de la galería en modo miniatura (Grid layout).*
 
-### Visor Inmersivo
 ![Vista de la Galería Expandible](img/imagen_enfocada.png)
 *Figura 2: Vista de una imagen ampliada dentro de la Galería Expandible.*
 
+### 2. Barra de Satisfacción
+![Vista de la barra en index](img/barra_satisfaccion.png)
+*Figura 3: Vista de la barra en modo reposo.*
+
+![Vista de la barra en index](img/barra_satisfaccion.png)
+*Figura 3: Vista de la barra en modo reposo.*
 ---
 
 ## Video Demostrativo
