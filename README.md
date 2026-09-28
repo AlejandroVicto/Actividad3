@@ -120,8 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
 ![Vista de la barra de satisfacción activa](img/satisfaccion_activo.png)
 *Figura 4: Vista de la Barra de Satisfacción con un nivel seleccionado.*
 
+
 ---
 
 ## Video Demostrativo
 
-https://youtu.be/hMxCeUY6bNE 
+https://youtu.be/hMxCeUY6bNE  
